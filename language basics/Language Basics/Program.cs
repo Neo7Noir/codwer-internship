@@ -64,3 +64,39 @@ void Task2()
     Console.WriteLine(minNum);
     
 }
+
+void Task3()
+{
+    Console.WriteLine("Dati numele de persoane:");
+    string[] names = Console.ReadLine().Split();
+    foreach (var name in names)
+    {
+        string nume = name.ToLower();
+        Dictionary<char, int> frecventaCaractere = new Dictionary<char, int>();
+        foreach (char caracter in nume)
+        {
+            if (Char.IsLetter(caracter))
+            {
+                if (frecventaCaractere.ContainsKey(caracter))
+                {
+                    frecventaCaractere[caracter]++;
+                }
+                else
+                {
+                    frecventaCaractere[caracter] = 1;
+                }
+            }
+        }
+        Console.WriteLine(name);
+        Console.WriteLine("Frecventa caracterelor:");
+
+        foreach (var entry in frecventaCaractere)
+        {
+            Console.WriteLine($"{entry.Key}: {entry.Value}");
+        }
+    }
+}
+
+//Task1();
+//Task2();
+//Task3();
