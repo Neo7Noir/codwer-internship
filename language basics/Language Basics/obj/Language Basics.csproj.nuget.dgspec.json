@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics\\Language Basics.csproj": {}
+    "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics\\Language Basics.csproj": {
+    "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics\\Language Basics.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics.csproj",
         "projectName": "Language Basics",
-        "projectPath": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics\\Language Basics.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\Language Basics\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\language basics\\Language Basics\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

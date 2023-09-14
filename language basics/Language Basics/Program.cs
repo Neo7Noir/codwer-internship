@@ -39,5 +39,28 @@
     string number = ReadNum();
     int reverseNum = ReverseNumber(number);
     PerfectSquare(reverseNum);
+}
 
+void Task2()
+{
+    //Citirea array-ului
+    double[] items = Console.ReadLine().Split().Select(double.Parse).ToArray();
+    double minNum = items[0];
+
+    foreach(double item in items)
+    {
+        //Afisarea numerelor neintregi
+        if(item % 1 != 0)
+        {
+            Console.WriteLine(item);
+        }
+        
+        //Cautarea si afisarea numarului minim
+        if(minNum > item)
+        {
+            minNum = item;
+        }
+    }
+    Console.WriteLine(minNum);
+    
 }
