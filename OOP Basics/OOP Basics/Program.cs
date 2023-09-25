@@ -1,11 +1,18 @@
-﻿namespace OOP
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.WebSockets;
+
+namespace OOP
 {
+    public enum TipAnimal
+    {
+        Lup, Urs, Oaie, Veverita, Pisica, Vaca
+    }
 
     public struct dimensiune
     {
-        decimal lungime { get; set; }
-        decimal latime { get; set; }
-        decimal inaltime { get; set; }
+        public decimal lungime { get; set; }
+        public decimal latime { get; set; }
+        public decimal inaltime { get; set; }
         public dimensiune(decimal _lungime, decimal _latime, decimal _inaltime)
         {
             lungime = _lungime;
@@ -16,10 +23,10 @@
 
     public abstract class Animal
     {
-        private string name { get; set; }
-        private decimal greutate { get; set; }
-        private dimensiune dimensiune;
-        private decimal viteza { get; set; }
+        public string name { get; set; }
+        protected decimal greutate { get; set; }
+        protected dimensiune dimensiune;
+        protected decimal viteza { get; set; }
         protected List<Mancare> stomac = new List<Mancare>();
         static int count = 0;
     
@@ -33,14 +40,8 @@
             count++;
         }
 
-        public void Mananca(Mancare m)
-        {
-            if (m.greutate < greutate / 8)
-            {
-                stomac.Add(m);
-                Console.WriteLine("Mananca");
-            }
-        }
+        public abstract void Mananca(Mancare m);
+
 
         public abstract double Energie();
 
@@ -48,6 +49,15 @@
         {
             decimal timp = distanta / (viteza / Convert.ToDecimal(Energie()));
             Console.WriteLine($"timpul = {timp} secunde");
+        }
+
+        public override string ToString()
+        {
+            return $"Tip animal: {this.GetType().Name}\n" +
+                   $"Nume: {name}\n" +
+                   $"Greutate: {greutate} kg\n" +
+                   $"Dimensiuni: {dimensiune.lungime} x {dimensiune.latime} x {dimensiune.inaltime}\n" +
+                   $"Viteza: {viteza} m/s\n";
         }
 
         public static int Numar()
@@ -61,6 +71,17 @@
         public Carnivor(string nume, decimal weight, dimensiune size, decimal speed) : base(nume, weight, size, speed)
         {
 
+        }
+        
+        public override void Mananca(Mancare m)
+        {
+            if(m.GetType() == typeof(Carne)){
+                if (m.greutate < greutate / 8)
+                {
+                    stomac.Add(m);
+                    Console.WriteLine("Mananca");
+                }
+            }
         }
 
         public override double Energie()
@@ -78,6 +99,18 @@
 
         }
 
+        public override void Mananca(Mancare m)
+        {
+            if (m.GetType() == typeof(Planta))
+            {
+                if (m.greutate < greutate / 8)
+                {
+                    stomac.Add(m);
+                    Console.WriteLine("Mananca");
+                }
+            }
+        }
+
         public override double Energie()
         {
             decimal mediaGreutateMan = stomac.Sum(man => man.greutate) / stomac.Count();
@@ -91,6 +124,15 @@
         public Omnivor(string nume, decimal weight, dimensiune size, decimal speed) : base(nume, weight, size, speed)
         {
 
+        }
+
+        public override void Mananca(Mancare m)
+        {
+            if (m.greutate < greutate / 8)
+            {
+                stomac.Add(m);
+                Console.WriteLine("Mananca");
+            }
         }
 
         public override double Energie()
@@ -115,38 +157,65 @@
     public abstract class Mancare
     {
         public decimal greutate { get; set; }
-        public decimal energie { get; set; }
+
+        private decimal _energie;
+        public decimal energie {
+            get { return _energie; }
+            set
+            {
+                if (value < 0 || value > 0.05M)
+                {
+                    throw new ArgumentException("Invalid value - Energy must be in the range 0-0.05");
+                }
+                _energie = value;
+            } }
+
+        public Mancare(decimal greutate, decimal energie)
+        {
+            this.greutate = greutate;
+            this.energie = energie;
+        }
     }
 
     public class Carne : Mancare
     {
-
+        public Carne(decimal greutate, decimal energie) : base (greutate, energie) { }
     }
 
     public class Planta : Mancare
     {
-
+        public Planta(decimal greutate, decimal energie) : base(greutate, energie) { }
     }
 
     public class Program
     {
+        public static Animal CreeazaAnimal(TipAnimal tipAnimal, string nume, decimal greutate, dimensiune dimensiune, decimal viteza)
+        {
+            if(tipAnimal == TipAnimal.Lup || tipAnimal == TipAnimal.Pisica)
+            {
+                return new Carnivor(nume, greutate, dimensiune, viteza);
+            }else if(tipAnimal == TipAnimal.Oaie || tipAnimal == TipAnimal.Vaca)
+            {
+                return new Erbivor(nume, greutate, dimensiune, viteza);
+            }
+            else return new Omnivor(nume, greutate, dimensiune, viteza);
+        }
         public static void Main(string[] args)
         {
             //Console.WriteLine("Numarul de animale =" + Animal.Numar());
 
-            dimensiune dLup = new dimensiune(70, 50, 54);
-            Carnivor lup = new Carnivor("Fiodor", 70, dLup, 10);
+            Carnivor lup = (Carnivor)CreeazaAnimal(TipAnimal.Lup, "Fedea", 70, new dimensiune(30, 40, 50), 10);
 
-            dimensiune dOaie = new dimensiune(60, 40, 30);
-            Erbivor oaie = new Erbivor("Zoluska", 60, dOaie, 7);
+            Console.WriteLine(lup);
 
-            dimensiune dUrs = new dimensiune(120, 70, 70);
-            Omnivor urs = new Omnivor("Gena", 150, dUrs, 8);
+            Erbivor oaie = new Erbivor("Zoluska", 60, new dimensiune(60, 40, 30), 7);
+
+            Omnivor urs = new Omnivor("Gena", 150, new dimensiune(120, 70, 70), 8);
 
             //Console.WriteLine("Numarul de animale =" + Animal.Numar());
 
-            Planta salata = new Planta();
-            Carne sunca = new Carne();
+            Planta salata = new Planta(3, 0.05M);
+            Carne sunca = new Carne(4, 0.04M);
 
             Console.WriteLine("Lup");
             lup.Mananca(sunca);
