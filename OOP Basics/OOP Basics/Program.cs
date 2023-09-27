@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Net.WebSockets;
 
 namespace OOP
@@ -202,21 +203,21 @@ namespace OOP
         }
         public static void Main(string[] args)
         {
-            //Console.WriteLine("Numarul de animale =" + Animal.Numar());
 
-            Carnivor lup = (Carnivor)CreeazaAnimal(TipAnimal.Lup, "Fedea", 70, new dimensiune(30, 40, 50), 10);
-
+            /*
+             * Instantierea animal + functia de afisare
+            Animal lup = (Animal)CreeazaAnimal(TipAnimal.Lup, "Fedea", 70, new dimensiune(30, 40, 50), 10);
             Console.WriteLine(lup);
+            */
 
-            Erbivor oaie = new Erbivor("Zoluska", 60, new dimensiune(60, 40, 30), 7);
 
-            Omnivor urs = new Omnivor("Gena", 150, new dimensiune(120, 70, 70), 8);
-
-            //Console.WriteLine("Numarul de animale =" + Animal.Numar());
+            //Console.WriteLine("Numarul de animale =" + Animal.Numar());   //Contorul pentru verificare numar de animale create
 
             Planta salata = new Planta(3, 0.05M);
             Carne sunca = new Carne(4, 0.04M);
 
+            /*
+             * Hranirea animalelor
             Console.WriteLine("Lup");
             lup.Mananca(sunca);
             lup.Mananca(sunca);
@@ -232,9 +233,56 @@ namespace OOP
             urs.Mananca(salata);
             urs.Mananca(salata);
 
+              //Functia alearga
             lup.Alearga(200);
             oaie.Alearga(200);
             urs.Alearga(200);
+            */
+            
+
+            //Ultimele cerinte I,J
+            List<Animal> animale = new List<Animal>();
+            for (int i = 0; i < 10; i++)
+            {
+                Random random = new Random();
+
+                Type type = typeof(TipAnimal);
+                Array values = type.GetEnumValues();
+                int index = random.Next(values.Length);
+                TipAnimal value = (TipAnimal)values.GetValue(index);
+
+                //string animal = value.ToString();
+                Animal animal = (Animal)CreeazaAnimal(value, "Animal", random.Next(60, 150), new dimensiune(random.Next(50,120), random.Next(40,60), random.Next(30,60)), random.Next(6,12));
+                animale.Add(animal);
+            }
+
+            int manancaCarne = 0;
+            int manancaSalata = 0;
+            int manancaMancare = 0;
+
+            foreach(Animal animal in animale)
+            {
+                if(animal.GetType() == typeof(Carnivor))
+                {
+                    animal.Mananca(sunca);
+                    manancaCarne++;
+                }else if(animal.GetType() == typeof(Erbivor))
+                {
+                    animal.Mananca(salata);
+                    manancaSalata++;
+                }
+                else
+                {
+                    animal.Mananca(salata);
+                    manancaMancare++;
+                }
+            }
+
+            Console.WriteLine("Statistica:\n");
+            Console.WriteLine("i.    " + manancaMancare + " animale mananca mancare");
+            Console.WriteLine("ii.   " + manancaCarne + " animale mananca carne");
+            Console.WriteLine("iii.  " + manancaSalata + " animale mananca salata");
+            
         }
     }
 }
