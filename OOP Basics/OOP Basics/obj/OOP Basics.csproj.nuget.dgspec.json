@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj": {}
+    "C:\\Users\\vladi\\OneDrive\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj": {
+    "C:\\Users\\vladi\\OneDrive\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj",
+        "projectUniqueName": "C:\\Users\\vladi\\OneDrive\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj",
         "projectName": "OOP Basics",
-        "projectPath": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\obj\\",
+        "projectPath": "C:\\Users\\vladi\\OneDrive\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\OOP Basics.csproj",
+        "packagesPath": "C:\\Users\\vladi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vladi\\OneDrive\\Desktop\\codwer-internship\\OOP Basics\\OOP Basics\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vladi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
