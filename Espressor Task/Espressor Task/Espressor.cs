@@ -2,11 +2,10 @@
 {
     public class Espressor
     {
-        public Boiler boiler = new Boiler();
-        
+        StartButton startButton = new StartButton();
         public void Start()
         {
-            boiler.verifyBoiler();
+            startButton.pressButton();
         }
     }
 
@@ -14,7 +13,7 @@
     {
         public static void Main(string[] args)
         {
-            Espressor espressor= new Espressor();
+            Espressor espressor = new Espressor();
             espressor.Start();
         }
     }

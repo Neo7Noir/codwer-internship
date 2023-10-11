@@ -10,10 +10,16 @@ namespace Espressor_Task
     {
         static private decimal procenteApa = 0;
 
-        public void schimbNivelApa(decimal apaAdaugata)
+        public void adaugaNivelApa(decimal apaAdaugata)
         {
             procenteApa+= apaAdaugata;
             Console.WriteLine($"Acum sunt: {procenteApa}% de apa in boiler ");
+        }
+
+        public void scadeNivelApa()
+        {
+            procenteApa-= 20;
+            Console.WriteLine($"Au ramas {procenteApa}% de apa in boiler");
         }
 
         public decimal getProcentApa()

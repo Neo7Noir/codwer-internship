@@ -9,6 +9,7 @@ namespace Espressor_Task
     public class Boiler
     {
         public Water_Level level = new Water_Level();
+        public WaterSensor waterSensor = new WaterSensor();
         public bool verifyBoiler()
         {
             decimal nivelApa = level.getProcentApa();
@@ -30,9 +31,14 @@ namespace Espressor_Task
             {
                 Console.WriteLine("Atata apa nu va incapea in boiler, alegeti cantitate mai mica");
             }
-            level.schimbNivelApa(apa);
+            level.adaugaNivelApa(apa);
             verifyBoiler();
         }
 
+        public void consumaApa()
+        {
+            Console.WriteLine("Sau consumat 20% de apa");
+            level.scadeNivelApa();
+        }
     }
 }
